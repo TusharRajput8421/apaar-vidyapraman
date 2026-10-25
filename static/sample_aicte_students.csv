@@ -1,0 +1,7 @@
+apaar_id,student_roll_no,course_code,full_name,gender,dob,category,admission_mode,academic_year
+234567890124,DTU/2024/CSE/051,CSE,Siddharth Malhotra,Male,2004-06-15,Regular,JEE Main JAC,2024-25
+345678901235,DTU/2024/CSE/052,CSE,Rhea Chakraborty,Female,2004-09-21,TFW,JEE Main JAC,2024-25
+456789012347,DTU/2024/CSE/053,CSE,Mohammed Zaid,Male,2003-12-10,EWS,JEE Main JAC,2024-25
+567890123458,DTU/2024/CSE/054,CSE,Elena Rostova,Female,2004-04-18,FN,DASA / Supernumerary,2024-25
+678901234560,DTU/2024/CSE/055,CSE,Karan Singhania,Male,2004-02-28,NRI,NRI Quota,2024-25
+111122223333,DTU/2024/CSE/056,CSE,Fake Student Test,Male,2004-01-01,Regular,Direct,2024-25

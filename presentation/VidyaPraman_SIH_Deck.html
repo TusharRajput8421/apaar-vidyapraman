@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidyaPraman | SIH Problem Statement 26263 Presentation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b1120; overflow: hidden; }
+        .slide { display: none; width: 100vw; height: 100vh; padding: 2.5rem 4rem; }
+        .slide.active { display: flex; flex-direction: column; justify-content: space-between; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); border-radius: 1rem; }
+        .glow-blue { box-shadow: 0 0 35px -5px rgba(59, 130, 246, 0.3); }
+        .glow-amber { box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.25); }
+    </style>
+</head>
+<body class="text-slate-100 select-none">
+
+    <!-- Top Status Bar -->
+    <div class="fixed top-4 left-8 right-8 flex items-center justify-between z-50 text-xs text-slate-400">
+        <div class="flex items-center space-x-3">
+            <span class="bg-blue-600/30 text-blue-400 font-bold px-2.5 py-1 rounded-md border border-blue-500/30">SIH 2024</span>
+            <span class="font-semibold text-slate-300">Problem Statement 26263 | AICTE</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span id="slideCounter" class="font-mono text-slate-400 font-medium">01 / 11</span>
+            <button onclick="toggleFullscreen()" class="hover:text-white px-2 py-1 rounded bg-slate-800/80 border border-slate-700">⛶ Fullscreen</button>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 1: Title Slide ================= -->
+    <div class="slide active bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900" id="slide-1">
+        <div class="my-auto max-w-5xl">
+            <div class="inline-flex items-center space-x-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
+                <span>🏆</span>
+                <span>SMART INDIA HACKATHON 2024 • SMART EDUCATION & REGULATORY TECH</span>
+            </div>
+            
+            <h1 class="text-6xl font-extrabold tracking-tight text-white mb-4">
+                VidyaPraman
+            </h1>
+            
+            <p class="text-2xl text-blue-200 font-light mb-8 max-w-4xl leading-relaxed">
+                Development of an APAAR ID-Based Student Data Management and Real-Time Verification Platform for AICTE-Approved Institutions
+            </p>
+
+            <div class="grid grid-cols-3 gap-6 pt-6 border-t border-slate-800 text-xs text-slate-400">
+                <div>
+                    <span class="block text-slate-500 uppercase font-semibold">Regulatory Body</span>
+                    <strong class="text-slate-200 text-sm">All India Council for Technical Education (AICTE)</strong>
+                </div>
+                <div>
+                    <span class="block text-slate-500 uppercase font-semibold">National Anchor</span>
+                    <strong class="text-slate-200 text-sm">APAAR (One Nation One Student ID - NEP 2020)</strong>
+                </div>
+                <div>
+                    <span class="block text-slate-500 uppercase font-semibold">Key Innovation</span>
+                    <strong class="text-amber-400 text-sm">Autonomous Anomaly Detection & Signed QR Credentials</strong>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between items-center">
+            <span>Press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">Space</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">→</kbd> to advance</span>
+            <span>VidyaPraman Ecosystem</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 2: Problem Analysis ================= -->
+    <div class="slide bg-slate-950" id="slide-2">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Problem Context & Real-World Gaps</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">Why AICTE Needs a Unified APAAR Platform</h2>
+
+            <div class="grid grid-cols-3 gap-6">
+                <div class="glass-card p-6 border-l-4 border-l-blue-500">
+                    <div class="text-3xl mb-4">📋</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Aggregated Data Deficit</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Currently, except for standalone PGDM colleges, 10,000+ AICTE institutions submit only aggregate statistics during annual approval renewals. Zero student-level visibility exists post-admission.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 border-l-4 border-l-amber-500">
+                    <div class="text-3xl mb-4">⚠️</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Quota Breaches & Capitation</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Statutory limits on Supernumerary seats (NRI max 5%, FN max 15%, TFW 5%) are frequently violated or misclassified by colleges to charge unauthorized capitation fees without real-time oversight.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 border-l-4 border-l-rose-500">
+                    <div class="text-3xl mb-4">🚨</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Ghost Students & Fraud</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        The same student blocks multiple seats across states, draws duplicate government scholarships (PMSSS, state subsidies), or exists only on paper to falsely satisfy Faculty-Student Ratio (FSR) norms.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>Problem Statement ID 26263</span>
+            <span>Current State Analysis</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 3: Solution Architecture ================= -->
+    <div class="slide bg-slate-950" id="slide-3">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">End-to-End System Architecture</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-6">The VidyaPraman Data Pipeline</h2>
+
+            <div class="grid grid-cols-4 gap-4 my-auto">
+                <div class="glass-card p-5 text-center">
+                    <div class="text-2xl mb-2">🏫</div>
+                    <h4 class="font-bold text-sm text-blue-300">1. Ingestion Layer</h4>
+                    <p class="text-[11px] text-slate-400 mt-2">
+                        Bulk CSV/Excel uploads & Campus ERP RESTful Webhooks (SAP, TCS iON, CollPoll).
+                    </p>
+                </div>
+
+                <div class="glass-card p-5 text-center border-blue-500/40 glow-blue">
+                    <div class="text-2xl mb-2">⚡</div>
+                    <h4 class="font-bold text-sm text-blue-300">2. Autonomous Validation</h4>
+                    <p class="text-[11px] text-slate-400 mt-2">
+                        12-digit Verhoeff Checksum + DigiLocker/ABC NAD registry + Intake Matrix enforcer.
+                    </p>
+                </div>
+
+                <div class="glass-card p-5 text-center border-amber-500/40 glow-amber">
+                    <div class="text-2xl mb-2">🛡️</div>
+                    <h4 class="font-bold text-sm text-amber-300">3. Anomaly Engine</h4>
+                    <p class="text-[11px] text-slate-400 mt-2">
+                        Detects cross-college duplicate enrolments, regular intake overflows, and quota violations.
+                    </p>
+                </div>
+
+                <div class="glass-card p-5 text-center">
+                    <div class="text-2xl mb-2">🔐</div>
+                    <h4 class="font-bold text-sm text-emerald-300">4. Verification & QR</h4>
+                    <p class="text-[11px] text-slate-400 mt-2">
+                        HMAC-SHA256 Signed QR codes on degree certificates for instant employer background checks.
+                    </p>
+                </div>
+            </div>
+
+            <div class="glass-card p-4 mt-6 bg-blue-950/20 text-xs text-blue-200 flex items-center justify-between">
+                <span>DPDP Act 2023 Compliant: De-identified PII, encrypted Aadhaar vaults, and immutable audit logs.</span>
+                <span class="text-emerald-400 font-semibold">✓ 100% Zero-Trust Regulatory Pipeline</span>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>System Architecture</span>
+            <span>VidyaPraman Core</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 4: APAAR Validation & Verhoeff ================= -->
+    <div class="slide bg-slate-950" id="slide-4">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Technical Innovation #1</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">APAAR Validation & Dihedral Verhoeff Engine</h2>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-card p-6 space-y-4">
+                    <h3 class="text-lg font-bold text-blue-400">Verhoeff Checksum Algorithm</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Utilizes the Dihedral Group \(D_5\) permutation tables—the exact check digit mathematical standard mandated for 12-digit Aadhaar and APAAR numbers in India.
+                    </p>
+                    <div class="bg-black/50 p-4 rounded-lg font-mono text-[11px] text-emerald-400 border border-emerald-500/20">
+                        c = d[c][p[i % 8][digit]]<br>
+                        # Catches 100% of single-digit substitution errors<br>
+                        # Catches 100% of transposition errors (e.g. 89 -> 98)
+                    </div>
+                    <p class="text-[11px] text-slate-400">
+                        Runs on client-side typing as well as bulk upload queues to reject counterfeit IDs before database ingress.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 space-y-4">
+                    <h3 class="text-lg font-bold text-amber-400">DigiLocker & ABC National Registry Sync</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Connects to the Academic Bank of Credits (ABC) to authenticate student full name, date of birth, and enrollment history.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-400">✓</span>
+                            <span>Validates candidate name matching with official national registry.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-400">✓</span>
+                            <span>Blocks unauthorized identity spoofing and proxy admissions.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-emerald-400">✓</span>
+                            <span>Links credits to student's lifelong academic account under NEP 2020.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>Identity Verification</span>
+            <span>Mathematical Rigor</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 5: Intelligent Anomaly Engine ================= -->
+    <div class="slide bg-slate-950" id="slide-5">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Technical Innovation #2</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">Autonomous Anomaly & Fraud Detection Engine</h2>
+
+            <div class="grid grid-cols-2 gap-6">
+                <div class="glass-card p-5 border-l-4 border-l-rose-500">
+                    <span class="text-[10px] bg-rose-500/20 text-rose-300 font-bold px-2 py-0.5 rounded">CRITICAL SEVERITY</span>
+                    <h3 class="text-base font-bold text-white mt-2 mb-1">Cross-Institution Concurrent Enrolment</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Maintains a global active student index. If an APAAR ID is admitted to College A and an admission is attempted in College B, it triggers an instant multi-institution fraud alert and freezes duplicate verification.
+                    </p>
+                </div>
+
+                <div class="glass-card p-5 border-l-4 border-l-amber-500">
+                    <span class="text-[10px] bg-amber-500/20 text-amber-300 font-bold px-2 py-0.5 rounded">HIGH SEVERITY</span>
+                    <h3 class="text-base font-bold text-white mt-2 mb-1">Sanctioned Intake Overflow</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Tracks cumulative admissions against AICTE Approved Intake Handbook norms:
+                        $$\text{Actual Admitted} \le \text{Approved Regular Intake}$$
+                        Blocks colleges from admitting unapproved surplus students.
+                    </p>
+                </div>
+
+                <div class="glass-card p-5 border-l-4 border-l-blue-500">
+                    <span class="text-[10px] bg-blue-500/20 text-blue-300 font-bold px-2 py-0.5 rounded">STATUTORY CAP ENFORCER</span>
+                    <h3 class="text-base font-bold text-white mt-2 mb-1">Supernumerary Quota Ceiling Guard</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Enforces exact legal percentages: NRI Quota \(\le 5\%\), Foreign National (FN) \(\le 15\%\), Tuition Fee Waiver (TFW) \(\le 5\%\), and EWS \(\le 10\%\). Eliminates quota hoarding.
+                    </p>
+                </div>
+
+                <div class="glass-card p-5 border-l-4 border-l-emerald-500">
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded">AUDIT WORKFLOW</span>
+                    <h3 class="text-base font-bold text-white mt-2 mb-1">Council Audit & Notice Generation</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Council nodal officers can review anomalies with 1-click audit action, issue formal show-cause notices, or record legal resolution notes in immutable tamper-evident logs.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>Autonomous Governance</span>
+            <span>Fraud Mitigation</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 6: Requirement 10 - Printing & QR ================= -->
+    <div class="slide bg-slate-950" id="slide-6">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Requirement 10 Implementation</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">Verifiable Credentials & Degree Printing Support</h2>
+
+            <div class="grid grid-cols-2 gap-8 items-center">
+                <div class="glass-card p-6 space-y-4">
+                    <h3 class="text-lg font-bold text-white">Degree & Certificate Printing Support</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Problem Requirement 10 mandates printing/display of APAAR ID along with Student Roll ID on degrees and marksheets issued by universities and degree-awarding bodies.
+                    </p>
+                    <div class="space-y-2 text-xs text-slate-300">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-emerald-400">✓</span>
+                            <span>Standardized AICTE & University credential layout.</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-emerald-400">✓</span>
+                            <span>Embeds 12-digit APAAR ID + Institutional Roll ID.</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-emerald-400">✓</span>
+                            <span>Dynamic printable HTML/PDF output with microprint watermark.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 space-y-4 text-center">
+                    <div class="w-32 h-32 bg-white rounded-xl mx-auto flex items-center justify-center p-2 shadow-lg">
+                        <div class="w-full h-full border-2 border-slate-900 rounded flex flex-col items-center justify-center text-slate-900">
+                            <span class="text-3xl">▦</span>
+                            <span class="text-[9px] font-mono font-bold mt-1">SIGNED QR</span>
+                        </div>
+                    </div>
+                    <h4 class="text-sm font-bold text-blue-300">HMAC-SHA256 Cryptographic QR Code</h4>
+                    <p class="text-xs text-slate-400 max-w-sm mx-auto">
+                        Scanning the QR code using any smartphone or camera instantly directs to AICTE Verification Gateway with tamper-proof token validation.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>Credential Verification</span>
+            <span>Tamper-Proof Design</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 7: Dual Real-Time Dashboards ================= -->
+    <div class="slide bg-slate-950" id="slide-7">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Stakeholder Interfaces</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">Dual Dashboards: Regulatory & Institutional</h2>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-card p-6 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-bold text-blue-400">🏛️ AICTE National Command Center</h3>
+                        <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded font-mono">Council Level</span>
+                    </div>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li>• National overview of approved seats vs verified admissions.</li>
+                        <li>• State-wise capacity utilization & supernumerary distribution heatmaps.</li>
+                        <li>• Real-Time Anomaly Triage Center with action workflows.</li>
+                        <li>• <strong>1-Click NIRF / NBA Accreditation Export:</strong> Generates verified CSV/Excel reports instantly, eliminating months of manual audit delays.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-6 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base font-bold text-emerald-400">🏫 Institutional Registrar Portal</h3>
+                        <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono">College Level</span>
+                    </div>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li>• Live visual seat matrix progress bars for each branch & quota.</li>
+                        <li>• Bulk CSV drag-and-drop ingestion with instant row validation.</li>
+                        <li>• Direct student enrollment form with live Verhoeff feedback.</li>
+                        <li>• Instant generation of verifiable student credential cards.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>Dashboards & Analytics</span>
+            <span>Real-Time Visibility</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 8: Tech Stack & Security ================= -->
+    <div class="slide bg-slate-950" id="slide-8">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Architecture & Security</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">Technology Stack & DPDP Compliance</h2>
+
+            <div class="grid grid-cols-3 gap-6">
+                <div class="glass-card p-5 space-y-3">
+                    <h4 class="text-sm font-bold text-blue-400">Backend & API</h4>
+                    <p class="text-xs text-slate-300">
+                        • Python (FastAPI): Ultra-fast asynchronous REST services.<br>
+                        • Pydantic: Strict schema enforcement.<br>
+                        • Uvicorn: High-concurrency ASGI server.<br>
+                        • OpenAPI / Swagger: Open ERP connector.
+                    </p>
+                </div>
+
+                <div class="glass-card p-5 space-y-3">
+                    <h4 class="text-sm font-bold text-amber-400">Crypto & Persistence</h4>
+                    <p class="text-xs text-slate-300">
+                        • SQLite (MVP) / PostgreSQL + JSONB.<br>
+                        • HMAC-SHA256 Tokenization.<br>
+                        • Python qrcode & Pillow image generation.<br>
+                        • Verhoeff Checksum mathematical engine.
+                    </p>
+                </div>
+
+                <div class="glass-card p-5 space-y-3">
+                    <h4 class="text-sm font-bold text-emerald-400">DPDP Act 2023 Security</h4>
+                    <p class="text-xs text-slate-300">
+                        • Privacy-by-design: Zero raw Aadhaar storage.<br>
+                        • Role-Based Access Control (RBAC).<br>
+                        • Explicit student consent logs.<br>
+                        • Immutable audit trail of every regulatory event.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>Technology Stack</span>
+            <span>DPDP Act 2023</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 9: National Impact & Feasibility ================= -->
+    <div class="slide bg-slate-950" id="slide-9">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Value Proposition & Impact</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">National Impact & Feasibility for AICTE</h2>
+
+            <div class="grid grid-cols-3 gap-6">
+                <div class="glass-card p-6 border-t-2 border-t-blue-500">
+                    <h3 class="text-base font-bold text-white mb-2">For AICTE & Regulators</h3>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li>• 100% authentic student-level records across 10,000+ colleges.</li>
+                        <li>• Zero ghost students or paper enrolments.</li>
+                        <li>• Elimination of scholarship disbursement leaks.</li>
+                        <li>• Data-driven policy formulation for technical education.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-6 border-t-2 border-t-emerald-500">
+                    <h3 class="text-base font-bold text-white mb-2">For Institutions</h3>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li>• Replaces cumbersome manual paperwork during approvals.</li>
+                        <li>• Seamless integration with existing college ERP systems.</li>
+                        <li>• Real-time seat matrix prevents accidental intake penalties.</li>
+                        <li>• Automated NIRF and NBA data generation.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-6 border-t-2 border-t-amber-500">
+                    <h3 class="text-base font-bold text-white mb-2">For Students & Employers</h3>
+                    <ul class="text-xs text-slate-300 space-y-2">
+                        <li>• Lifelong verifiable academic identity under NEP 2020.</li>
+                        <li>• 10-second instant background checks for employers.</li>
+                        <li>• Complete protection against fake degree scams.</li>
+                        <li>• Full control over personal data privacy.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>National Feasibility</span>
+            <span>Transformative Impact</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 10: Implementation Roadmap ================= -->
+    <div class="slide bg-slate-950" id="slide-10">
+        <div class="mt-8">
+            <span class="text-blue-400 text-xs font-bold tracking-wider uppercase">Strategic Rollout</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">Phase-Wise Implementation Roadmap</h2>
+
+            <div class="grid grid-cols-3 gap-6">
+                <div class="glass-card p-6 border-l-4 border-l-emerald-500 glow-blue">
+                    <span class="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded">PHASE 1 (COMPLETED MVP)</span>
+                    <h3 class="text-base font-bold text-white mt-2 mb-2">SIH Core Platform</h3>
+                    <ul class="text-xs text-slate-300 space-y-1.5">
+                        <li>• Full-Stack FastAPI & Interactive UI.</li>
+                        <li>• Verhoeff Checksum & Mock ABC Engine.</li>
+                        <li>• Intake & Supernumerary Matrix Enforcer.</li>
+                        <li>• Signed QR Verifiable Credentials.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-6 border-l-4 border-l-blue-500">
+                    <span class="text-[10px] font-bold text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded">PHASE 2 (MONTHS 1-3)</span>
+                    <h3 class="text-base font-bold text-white mt-2 mb-2">State Counseling Sync</h3>
+                    <ul class="text-xs text-slate-300 space-y-1.5">
+                        <li>• Integration with State CET / JEE / CAT portals.</li>
+                        <li>• Reconciliation between allotment & admission.</li>
+                        <li>• National Scholarship Portal (NSP) sync.</li>
+                        <li>• Pilot testing across 100 institutes.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-6 border-l-4 border-l-amber-500">
+                    <span class="text-[10px] font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded">PHASE 3 (MONTHS 4-6)</span>
+                    <h3 class="text-base font-bold text-white mt-2 mb-2">Pan-India Rollout</h3>
+                    <ul class="text-xs text-slate-300 space-y-1.5">
+                        <li>• Onboarding all 10,000+ AICTE colleges.</li>
+                        <li>• Mobile app for student consent & wallet.</li>
+                        <li>• W3C Verifiable Credentials on DigiLocker.</li>
+                        <li>• Full integration with NETF & NEP 2020.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>Implementation Roadmap</span>
+            <span>Scale to 10,000+ Institutions</span>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 11: Summary & Live Demonstration ================= -->
+    <div class="slide bg-slate-950" id="slide-11">
+        <div class="mt-8">
+            <span class="text-amber-400 text-xs font-bold tracking-wider uppercase">Working Implementation</span>
+            <h2 class="text-3xl font-bold text-white mt-1 mb-8">VidyaPraman Live Demo & Conclusion</h2>
+
+            <div class="grid grid-cols-2 gap-8 items-center">
+                <div class="glass-card p-6 space-y-4">
+                    <h3 class="text-lg font-bold text-emerald-400">Live Running Prototype</h3>
+                    <p class="text-xs text-slate-300">
+                        The full-stack platform is running locally and available for live interactive testing:
+                    </p>
+                    <div class="bg-black/40 p-4 rounded-lg font-mono text-xs text-blue-300 border border-slate-800">
+                        URL: <a href="http://localhost:8000" target="_blank" class="underline text-blue-400">http://localhost:8000</a><br>
+                        Swagger Docs: <a href="http://localhost:8000/docs" target="_blank" class="underline text-blue-400">http://localhost:8000/docs</a>
+                    </div>
+                    <div class="text-xs text-slate-300 space-y-1">
+                        <div>✓ Test Case 1: Authentic Student (DTU CSE - 987654321012)</div>
+                        <div>✓ Test Case 2: Double Enrolment Flagged (COEP & BMSCE - 918273645018)</div>
+                        <div>✓ Test Case 3: NRI Quota Breach Detection</div>
+                        <div>✓ Test Case 4: Bulk CSV Upload with Checksum validation</div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 space-y-4 text-center">
+                    <div class="text-5xl">🇮🇳</div>
+                    <h3 class="text-xl font-bold text-white">Empowering Indian Technical Education</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm mx-auto">
+                        VidyaPraman turns APAAR ID from a theoretical concept into an active, protective, and empowering digital backbone for AICTE, institutions, and millions of Indian students.
+                    </p>
+                    <div class="pt-4">
+                        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-4 py-2 rounded-full">
+                            Thank You | Ready for Jury Q&A
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-xs text-slate-500 flex justify-between">
+            <span>Live Demonstration</span>
+            <span>VidyaPraman • SIH 26263</span>
+        </div>
+    </div>
+
+    <!-- Presentation Controls -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 11;
+
+        function showSlide(index) {
+            if (index < 1 || index > totalSlides) return;
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.getElementById(`slide-${index}`).classList.add('active');
+            currentSlide = index;
+            document.getElementById('slideCounter').textContent = `${String(currentSlide).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) showSlide(currentSlide - 1);
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                prevSlide();
+            } else if (e.key === 'Home') {
+                showSlide(1);
+            } else if (e.key === 'End') {
+                showSlide(totalSlides);
+            }
+        });
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
